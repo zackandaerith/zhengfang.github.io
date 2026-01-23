@@ -1,0 +1,47 @@
+[
+  {
+    "id": "achievement-1",
+    "title": "Employee of the Year Award",
+    "description": "Recognized for outstanding customer experience leadership and innovation",
+    "date": "2023-01-01T00:00:00.000Z",
+    "category": "award",
+    "organization": "Apple Inc.",
+    "metrics": []
+  },
+  {
+    "id": "achievement-2",
+    "title": "Innovation Excellence Award",
+    "description": "Awarded for developing new customer success measurement framework",
+    "date": "2022-01-01T00:00:00.000Z",
+    "category": "award",
+    "organization": "Apple Inc.",
+    "metrics": []
+  },
+  {
+    "id": "achievement-3",
+    "title": "Research Excellence Award",
+    "description": "Recognized for contributions to machine learning research",
+    "date": "2021-01-01T00:00:00.000Z",
+    "category": "recognition",
+    "organization": "Northeastern University",
+    "metrics": []
+  },
+  {
+    "id": "achievement-4",
+    "title": "Outstanding Graduate Student",
+    "description": "Awarded for academic excellence and research contributions",
+    "date": "2018-01-01T00:00:00.000Z",
+    "category": "recognition",
+    "organization": "North Dakota State University",
+    "metrics": []
+  },
+  {
+    "id": "achievement-5",
+    "title": "Dean's List",
+    "description": "Maintained high academic performance throughout undergraduate studies",
+    "date": "2016-01-01T00:00:00.000Z",
+    "category": "recognition",
+    "organization": "North Dakota State University",
+    "metrics": []
+  }
+]

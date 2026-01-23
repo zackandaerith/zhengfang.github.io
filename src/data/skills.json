@@ -1,0 +1,107 @@
+[
+  {
+    "id": "skill-1",
+    "name": "Python",
+    "category": "technical",
+    "level": "advanced",
+    "description": "Programming language for data analysis and machine learning"
+  },
+  {
+    "id": "skill-2",
+    "name": "SQL",
+    "category": "technical",
+    "level": "advanced",
+    "description": "Database querying and data management"
+  },
+  {
+    "id": "skill-3",
+    "name": "Machine Learning",
+    "category": "technical",
+    "level": "advanced",
+    "description": "Applied machine learning techniques in research and business contexts"
+  },
+  {
+    "id": "skill-4",
+    "name": "Data Analytics",
+    "category": "technical",
+    "level": "expert",
+    "description": "Statistical analysis and data-driven decision making"
+  },
+  {
+    "id": "skill-5",
+    "name": "Salesforce",
+    "category": "technical",
+    "level": "intermediate",
+    "description": "CRM platform for customer relationship management"
+  },
+  {
+    "id": "skill-6",
+    "name": "Agile Methodology",
+    "category": "technical",
+    "level": "intermediate",
+    "description": "Agile project management and development practices"
+  },
+  {
+    "id": "skill-7",
+    "name": "Six Sigma",
+    "category": "technical",
+    "level": "advanced",
+    "description": "Process improvement and quality management methodology"
+  },
+  {
+    "id": "skill-8",
+    "name": "Project Management",
+    "category": "soft",
+    "level": "expert",
+    "description": "Leading and coordinating complex projects and teams"
+  },
+  {
+    "id": "skill-9",
+    "name": "Leadership",
+    "category": "soft",
+    "level": "expert",
+    "description": "Team leadership and strategic direction"
+  },
+  {
+    "id": "skill-10",
+    "name": "Communication",
+    "category": "soft",
+    "level": "expert",
+    "description": "Clear and effective communication across all levels"
+  },
+  {
+    "id": "skill-11",
+    "name": "Problem Solving",
+    "category": "soft",
+    "level": "expert",
+    "description": "Analytical thinking and creative solution development"
+  },
+  {
+    "id": "skill-12",
+    "name": "Customer Success",
+    "category": "industry",
+    "level": "expert",
+    "description": "Customer experience strategy and success management"
+  },
+  {
+    "id": "skill-13",
+    "name": "Team Collaboration",
+    "category": "soft",
+    "level": "expert",
+    "description": "Cross-functional team coordination and collaboration"
+  },
+  {
+    "id": "skill-14",
+    "name": "Strategic Planning",
+    "category": "soft",
+    "level": "advanced",
+    "description": "Long-term strategic thinking and planning"
+  },
+  {
+    "id": "skill-15",
+    "name": "Customer Experience Management",
+    "category": "industry",
+    "level": "expert",
+    "description": "End-to-end customer experience design and optimization"
+  }
+]

@@ -1,0 +1,413 @@
+{
+  "id": "john-fang-profile",
+  "personalInfo": {
+    "name": "John Fang",
+    "title": "Customer Experience & Strategy Lead",
+    "location": "Waltham, MA",
+    "email": "john.fang0626@icloud.com",
+    "phone": "701-936-1040",
+    "linkedIn": "https://www.linkedin.com/in/zheng-fang-johon/",
+    "website": "",
+    "summary": "Experienced Customer Success Manager with expertise in customer experience strategy, data analytics, and cross-functional leadership. Proven track record of improving customer satisfaction and driving business growth through innovative solutions and strategic frameworks.",
+    "profileImage": "/images/profile.jpg"
+  },
+  "experience": [
+    {
+      "id": "exp-1",
+      "company": "Apple",
+      "position": "Customer Experience & Strategy Lead",
+      "startDate": "2024-01-01T00:00:00.000Z",
+      "endDate": null,
+      "location": "Cupertino, CA",
+      "description": "Lead customer experience initiatives across multiple product lines. Develop strategic frameworks for customer success measurement. Collaborate with cross-functional teams to improve customer satisfaction. Analyze customer feedback and implement data-driven improvements.",
+      "achievements": [
+        "Lead customer experience initiatives across multiple product lines",
+        "Develop strategic frameworks for customer success measurement",
+        "Collaborate with cross-functional teams to improve customer satisfaction",
+        "Analyze customer feedback and implement data-driven improvements"
+      ],
+      "technologies": ["Salesforce", "Data Analytics", "Customer Success"],
+      "metrics": []
+    },
+    {
+      "id": "exp-2",
+      "company": "Apple",
+      "position": "Product Expert",
+      "startDate": "2022-03-01T00:00:00.000Z",
+      "endDate": "2024-01-01T00:00:00.000Z",
+      "location": "Cupertino, CA",
+      "description": "Provided technical expertise for Apple products and services. Trained team members on new product features and capabilities. Supported customer onboarding and adoption processes. Maintained 95% customer satisfaction rating.",
+      "achievements": [
+        "Provided technical expertise for Apple products and services",
+        "Trained team members on new product features and capabilities",
+        "Supported customer onboarding and adoption processes",
+        "Maintained 95% customer satisfaction rating"
+      ],
+      "technologies": ["Apple Products", "Training", "Customer Support"],
+      "metrics": [
+        {
+          "id": "metric-1",
+          "name": "Customer Satisfaction Rating",
+          "value": 95,
+          "unit": "%",
+          "description": "Maintained high customer satisfaction through expert product support",
+          "category": "satisfaction",
+          "timeframe": "2022-2024",
+          "context": "Product Expert role at Apple"
+        }
+      ]
+    },
+    {
+      "id": "exp-3",
+      "company": "Apple",
+      "position": "Client Solutions Advisor",
+      "startDate": "2022-01-01T00:00:00.000Z",
+      "endDate": "2022-03-01T00:00:00.000Z",
+      "location": "Cupertino, CA",
+      "description": "Advised enterprise clients on Apple solutions and integrations. Developed custom implementation strategies for large organizations. Managed client relationships and ensured successful deployments.",
+      "achievements": [
+        "Advised enterprise clients on Apple solutions and integrations",
+        "Developed custom implementation strategies for large organizations",
+        "Managed client relationships and ensured successful deployments"
+      ],
+      "technologies": ["Apple Solutions", "Enterprise Integration", "Client Management"],
+      "metrics": []
+    },
+    {
+      "id": "exp-4",
+      "company": "Northeastern University",
+      "position": "Research Assistant",
+      "startDate": "2020-09-01T00:00:00.000Z",
+      "endDate": "2021-12-01T00:00:00.000Z",
+      "location": "Boston, MA",
+      "description": "Conducted research in computer systems engineering. Collaborated with faculty on machine learning projects. Published findings in academic conferences. Mentored undergraduate students in research methodologies.",
+      "achievements": [
+        "Conducted research in computer systems engineering",
+        "Collaborated with faculty on machine learning projects",
+        "Published findings in academic conferences",
+        "Mentored undergraduate students in research methodologies"
+      ],
+      "technologies": ["Machine Learning", "Python", "Research Methodologies", "Data Analytics"],
+      "metrics": []
+    },
+    {
+      "id": "exp-5",
+      "company": "North Dakota State University",
+      "position": "Research Assistant",
+      "startDate": "2015-08-01T00:00:00.000Z",
+      "endDate": "2018-05-01T00:00:00.000Z",
+      "location": "Fargo, ND",
+      "description": "Led research projects in mechanical engineering. Developed innovative solutions for manufacturing processes. Collaborated with industry partners on applied research. Presented research findings at national conferences.",
+      "achievements": [
+        "Led research projects in mechanical engineering",
+        "Developed innovative solutions for manufacturing processes",
+        "Collaborated with industry partners on applied research",
+        "Presented research findings at national conferences"
+      ],
+      "technologies": ["Manufacturing Processes", "Process Optimization", "Research", "Six Sigma"],
+      "metrics": []
+    },
+    {
+      "id": "exp-6",
+      "company": "Massman Automation",
+      "position": "Project Manager Intern",
+      "startDate": "2015-06-01T00:00:00.000Z",
+      "endDate": "2015-08-01T00:00:00.000Z",
+      "location": "Fargo, ND",
+      "description": "Managed automation projects for manufacturing clients. Coordinated with engineering teams to deliver solutions on time. Analyzed project requirements and developed implementation plans. Improved project delivery efficiency by 25%.",
+      "achievements": [
+        "Managed automation projects for manufacturing clients",
+        "Coordinated with engineering teams to deliver solutions on time",
+        "Analyzed project requirements and developed implementation plans",
+        "Improved project delivery efficiency by 25%"
+      ],
+      "technologies": ["Project Management", "Automation", "Manufacturing"],
+      "metrics": [
+        {
+          "id": "metric-2",
+          "name": "Project Delivery Efficiency Improvement",
+          "value": 25,
+          "unit": "%",
+          "description": "Improved project delivery efficiency through better planning and coordination",
+          "category": "efficiency",
+          "timeframe": "Summer 2015",
+          "context": "Project Manager Intern at Massman Automation"
+        }
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "id": "skill-1",
+      "name": "Python",
+      "category": "technical",
+      "level": "advanced",
+      "description": "Programming language for data analysis and machine learning"
+    },
+    {
+      "id": "skill-2",
+      "name": "SQL",
+      "category": "technical",
+      "level": "advanced",
+      "description": "Database querying and data management"
+    },
+    {
+      "id": "skill-3",
+      "name": "Machine Learning",
+      "category": "technical",
+      "level": "advanced",
+      "description": "Applied machine learning techniques in research and business contexts"
+    },
+    {
+      "id": "skill-4",
+      "name": "Data Analytics",
+      "category": "technical",
+      "level": "expert",
+      "description": "Statistical analysis and data-driven decision making"
+    },
+    {
+      "id": "skill-5",
+      "name": "Salesforce",
+      "category": "technical",
+      "level": "intermediate",
+      "description": "CRM platform for customer relationship management"
+    },
+    {
+      "id": "skill-6",
+      "name": "Agile Methodology",
+      "category": "technical",
+      "level": "intermediate",
+      "description": "Agile project management and development practices"
+    },
+    {
+      "id": "skill-7",
+      "name": "Six Sigma",
+      "category": "technical",
+      "level": "advanced",
+      "description": "Process improvement and quality management methodology"
+    },
+    {
+      "id": "skill-8",
+      "name": "Project Management",
+      "category": "soft",
+      "level": "expert",
+      "description": "Leading and coordinating complex projects and teams"
+    },
+    {
+      "id": "skill-9",
+      "name": "Leadership",
+      "category": "soft",
+      "level": "expert",
+      "description": "Team leadership and strategic direction"
+    },
+    {
+      "id": "skill-10",
+      "name": "Communication",
+      "category": "soft",
+      "level": "expert",
+      "description": "Clear and effective communication across all levels"
+    },
+    {
+      "id": "skill-11",
+      "name": "Problem Solving",
+      "category": "soft",
+      "level": "expert",
+      "description": "Analytical thinking and creative solution development"
+    },
+    {
+      "id": "skill-12",
+      "name": "Customer Success",
+      "category": "industry",
+      "level": "expert",
+      "description": "Customer experience strategy and success management"
+    },
+    {
+      "id": "skill-13",
+      "name": "Team Collaboration",
+      "category": "soft",
+      "level": "expert",
+      "description": "Cross-functional team coordination and collaboration"
+    },
+    {
+      "id": "skill-14",
+      "name": "Strategic Planning",
+      "category": "soft",
+      "level": "advanced",
+      "description": "Long-term strategic thinking and planning"
+    },
+    {
+      "id": "skill-15",
+      "name": "Customer Experience Management",
+      "category": "industry",
+      "level": "expert",
+      "description": "End-to-end customer experience design and optimization"
+    }
+  ],
+  "education": [
+    {
+      "id": "edu-1",
+      "institution": "Northeastern University",
+      "degree": "Master of Science",
+      "field": "Computer Systems Engineering",
+      "startDate": "2020-09-01T00:00:00.000Z",
+      "endDate": "2021-12-01T00:00:00.000Z",
+      "gpa": null,
+      "achievements": [
+        "Relevant coursework: Machine Learning, Data Analytics, Systems Design"
+      ]
+    },
+    {
+      "id": "edu-2",
+      "institution": "North Dakota State University",
+      "degree": "Master of Science",
+      "field": "Mechanical Engineering",
+      "startDate": "2016-08-01T00:00:00.000Z",
+      "endDate": "2018-05-01T00:00:00.000Z",
+      "gpa": 3.8,
+      "achievements": [
+        "Thesis: Advanced Manufacturing Process Optimization"
+      ]
+    },
+    {
+      "id": "edu-3",
+      "institution": "North Dakota State University",
+      "degree": "Bachelor of Science",
+      "field": "Industrial and Manufacturing Engineering",
+      "startDate": "2012-08-01T00:00:00.000Z",
+      "endDate": "2016-05-01T00:00:00.000Z",
+      "gpa": 3.7,
+      "achievements": [
+        "Magna Cum Laude"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "id": "cert-1",
+      "name": "Lean Six Sigma Green Belt",
+      "issuer": "ASQ (American Society for Quality)",
+      "issueDate": "2019-01-01T00:00:00.000Z",
+      "expiryDate": null,
+      "credentialId": "LSS-GB-2019",
+      "credentialUrl": ""
+    },
+    {
+      "id": "cert-2",
+      "name": "Project Management Professional (PMP)",
+      "issuer": "Project Management Institute",
+      "issueDate": "2024-01-01T00:00:00.000Z",
+      "expiryDate": null,
+      "credentialId": "PMP-2024-IP",
+      "credentialUrl": ""
+    }
+  ],
+  "achievements": [
+    {
+      "id": "achievement-1",
+      "title": "Employee of the Year Award",
+      "description": "Recognized for outstanding customer experience leadership and innovation",
+      "date": "2023-01-01T00:00:00.000Z",
+      "category": "award",
+      "organization": "Apple Inc.",
+      "metrics": []
+    },
+    {
+      "id": "achievement-2",
+      "title": "Innovation Excellence Award",
+      "description": "Awarded for developing new customer success measurement framework",
+      "date": "2022-01-01T00:00:00.000Z",
+      "category": "award",
+      "organization": "Apple Inc.",
+      "metrics": []
+    },
+    {
+      "id": "achievement-3",
+      "title": "Research Excellence Award",
+      "description": "Recognized for contributions to machine learning research",
+      "date": "2021-01-01T00:00:00.000Z",
+      "category": "recognition",
+      "organization": "Northeastern University",
+      "metrics": []
+    },
+    {
+      "id": "achievement-4",
+      "title": "Outstanding Graduate Student",
+      "description": "Awarded for academic excellence and research contributions",
+      "date": "2018-01-01T00:00:00.000Z",
+      "category": "recognition",
+      "organization": "North Dakota State University",
+      "metrics": []
+    },
+    {
+      "id": "achievement-5",
+      "title": "Dean's List",
+      "description": "Maintained high academic performance throughout undergraduate studies",
+      "date": "2016-01-01T00:00:00.000Z",
+      "category": "recognition",
+      "organization": "North Dakota State University",
+      "metrics": []
+    }
+  ],
+  "caseStudies": [
+    {
+      "id": "case-study-apple-engagement",
+      "title": "Transforming Customer Engagement at Apple",
+      "client": "Apple Inc.",
+      "industry": "Technology",
+      "challenge": "Apple needed to improve customer engagement across multiple product lines while maintaining their premium brand experience. Customer feedback indicated gaps in the post-purchase experience and opportunities for deeper product adoption.",
+      "solution": "Developed and implemented a comprehensive customer experience strategy focusing on personalized touchpoints, proactive support, and data-driven insights. Created strategic frameworks for measuring customer success and implemented cross-functional collaboration processes.",
+      "implementation": [
+        "Analyzed customer journey mapping across all touchpoints",
+        "Developed personalized engagement strategies for different customer segments",
+        "Implemented data analytics framework for real-time customer insights",
+        "Created cross-functional collaboration processes between teams",
+        "Established customer feedback loops and continuous improvement cycles",
+        "Trained team members on new customer success methodologies"
+      ],
+      "results": [
+        {
+          "id": "result-1",
+          "description": "Increased customer engagement through strategic initiatives and personalized experiences",
+          "metric": {
+            "id": "metric-cs-engagement",
+            "name": "Customer Engagement Improvement",
+            "value": 80,
+            "unit": "%",
+            "description": "Increased customer engagement through strategic initiatives and personalized experiences",
+            "category": "growth",
+            "timeframe": "2023-2024",
+            "context": "Customer Experience & Strategy Lead at Apple"
+          },
+          "impact": "high"
+        }
+      ],
+      "testimonial": {
+        "id": "testimonial-apple-1",
+        "content": "John's strategic approach to customer experience transformed how we engage with our clients. His data-driven insights and collaborative leadership style resulted in measurable improvements across all our key metrics.",
+        "author": "Sarah Chen",
+        "position": "Director of Customer Success",
+        "company": "Apple Inc.",
+        "date": "2024-01-15T00:00:00.000Z",
+        "rating": 5,
+        "image": "/images/testimonials/sarah-chen.jpg"
+      },
+      "images": [
+        "/images/case-studies/apple-engagement-dashboard.jpg",
+        "/images/case-studies/apple-customer-journey.jpg",
+        "/images/case-studies/apple-metrics-overview.jpg"
+      ],
+      "tags": ["Customer Experience", "Strategy", "Data Analytics", "Cross-functional Leadership", "Apple"],
+      "featured": true,
+      "startDate": "2023-01-01T00:00:00.000Z",
+      "endDate": "2024-01-01T00:00:00.000Z"
+    }
+  ],
+  "testimonials": [],
+  "preferences": {
+    "theme": "system",
+    "language": "en",
+    "timezone": "America/New_York",
+    "emailNotifications": true,
+    "publicProfile": true
+  }
+}

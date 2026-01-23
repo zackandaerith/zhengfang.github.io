@@ -1,0 +1,38 @@
+[
+  {
+    "id": "edu-1",
+    "institution": "Northeastern University",
+    "degree": "Master of Science",
+    "field": "Computer Systems Engineering",
+    "startDate": "2020-09-01T00:00:00.000Z",
+    "endDate": "2021-12-01T00:00:00.000Z",
+    "gpa": null,
+    "achievements": [
+      "Relevant coursework: Machine Learning, Data Analytics, Systems Design"
+    ]
+  },
+  {
+    "id": "edu-2",
+    "institution": "North Dakota State University",
+    "degree": "Master of Science",
+    "field": "Mechanical Engineering",
+    "startDate": "2016-08-01T00:00:00.000Z",
+    "endDate": "2018-05-01T00:00:00.000Z",
+    "gpa": 3.8,
+    "achievements": [
+      "Thesis: Advanced Manufacturing Process Optimization"
+    ]
+  },
+  {
+    "id": "edu-3",
+    "institution": "North Dakota State University",
+    "degree": "Bachelor of Science",
+    "field": "Industrial and Manufacturing Engineering",
+    "startDate": "2012-08-01T00:00:00.000Z",
+    "endDate": "2016-05-01T00:00:00.000Z",
+    "gpa": 3.7,
+    "achievements": [
+      "Magna Cum Laude"
+    ]
+  }
+]

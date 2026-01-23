@@ -1,0 +1,125 @@
+[
+  {
+    "id": "exp-1",
+    "company": "Apple",
+    "position": "Customer Experience & Strategy Lead",
+    "startDate": "2024-01-01T00:00:00.000Z",
+    "endDate": null,
+    "location": "Cupertino, CA",
+    "description": "Lead customer experience initiatives across multiple product lines. Develop strategic frameworks for customer success measurement. Collaborate with cross-functional teams to improve customer satisfaction. Analyze customer feedback and implement data-driven improvements.",
+    "achievements": [
+      "Lead customer experience initiatives across multiple product lines",
+      "Develop strategic frameworks for customer success measurement",
+      "Collaborate with cross-functional teams to improve customer satisfaction",
+      "Analyze customer feedback and implement data-driven improvements"
+    ],
+    "technologies": ["Salesforce", "Data Analytics", "Customer Success"],
+    "metrics": []
+  },
+  {
+    "id": "exp-2",
+    "company": "Apple",
+    "position": "Product Expert",
+    "startDate": "2022-03-01T00:00:00.000Z",
+    "endDate": "2024-01-01T00:00:00.000Z",
+    "location": "Cupertino, CA",
+    "description": "Provided technical expertise for Apple products and services. Trained team members on new product features and capabilities. Supported customer onboarding and adoption processes. Maintained 95% customer satisfaction rating.",
+    "achievements": [
+      "Provided technical expertise for Apple products and services",
+      "Trained team members on new product features and capabilities",
+      "Supported customer onboarding and adoption processes",
+      "Maintained 95% customer satisfaction rating"
+    ],
+    "technologies": ["Apple Products", "Training", "Customer Support"],
+    "metrics": [
+      {
+        "id": "metric-1",
+        "name": "Customer Satisfaction Rating",
+        "value": 95,
+        "unit": "%",
+        "description": "Maintained high customer satisfaction through expert product support",
+        "category": "satisfaction",
+        "timeframe": "2022-2024",
+        "context": "Product Expert role at Apple"
+      }
+    ]
+  },
+  {
+    "id": "exp-3",
+    "company": "Apple",
+    "position": "Client Solutions Advisor",
+    "startDate": "2022-01-01T00:00:00.000Z",
+    "endDate": "2022-03-01T00:00:00.000Z",
+    "location": "Cupertino, CA",
+    "description": "Advised enterprise clients on Apple solutions and integrations. Developed custom implementation strategies for large organizations. Managed client relationships and ensured successful deployments.",
+    "achievements": [
+      "Advised enterprise clients on Apple solutions and integrations",
+      "Developed custom implementation strategies for large organizations",
+      "Managed client relationships and ensured successful deployments"
+    ],
+    "technologies": ["Apple Solutions", "Enterprise Integration", "Client Management"],
+    "metrics": []
+  },
+  {
+    "id": "exp-4",
+    "company": "Northeastern University",
+    "position": "Research Assistant",
+    "startDate": "2020-09-01T00:00:00.000Z",
+    "endDate": "2021-12-01T00:00:00.000Z",
+    "location": "Boston, MA",
+    "description": "Conducted research in computer systems engineering. Collaborated with faculty on machine learning projects. Published findings in academic conferences. Mentored undergraduate students in research methodologies.",
+    "achievements": [
+      "Conducted research in computer systems engineering",
+      "Collaborated with faculty on machine learning projects",
+      "Published findings in academic conferences",
+      "Mentored undergraduate students in research methodologies"
+    ],
+    "technologies": ["Machine Learning", "Python", "Research Methodologies", "Data Analytics"],
+    "metrics": []
+  },
+  {
+    "id": "exp-5",
+    "company": "North Dakota State University",
+    "position": "Research Assistant",
+    "startDate": "2015-08-01T00:00:00.000Z",
+    "endDate": "2018-05-01T00:00:00.000Z",
+    "location": "Fargo, ND",
+    "description": "Led research projects in mechanical engineering. Developed innovative solutions for manufacturing processes. Collaborated with industry partners on applied research. Presented research findings at national conferences.",
+    "achievements": [
+      "Led research projects in mechanical engineering",
+      "Developed innovative solutions for manufacturing processes",
+      "Collaborated with industry partners on applied research",
+      "Presented research findings at national conferences"
+    ],
+    "technologies": ["Manufacturing Processes", "Process Optimization", "Research", "Six Sigma"],
+    "metrics": []
+  },
+  {
+    "id": "exp-6",
+    "company": "Massman Automation",
+    "position": "Project Manager Intern",
+    "startDate": "2015-06-01T00:00:00.000Z",
+    "endDate": "2015-08-01T00:00:00.000Z",
+    "location": "Fargo, ND",
+    "description": "Managed automation projects for manufacturing clients. Coordinated with engineering teams to deliver solutions on time. Analyzed project requirements and developed implementation plans. Improved project delivery efficiency by 25%.",
+    "achievements": [
+      "Managed automation projects for manufacturing clients",
+      "Coordinated with engineering teams to deliver solutions on time",
+      "Analyzed project requirements and developed implementation plans",
+      "Improved project delivery efficiency by 25%"
+    ],
+    "technologies": ["Project Management", "Automation", "Manufacturing"],
+    "metrics": [
+      {
+        "id": "metric-2",
+        "name": "Project Delivery Efficiency Improvement",
+        "value": 25,
+        "unit": "%",
+        "description": "Improved project delivery efficiency through better planning and coordination",
+        "category": "efficiency",
+        "timeframe": "Summer 2015",
+        "context": "Project Manager Intern at Massman Automation"
+      }
+    ]
+  }
+]
