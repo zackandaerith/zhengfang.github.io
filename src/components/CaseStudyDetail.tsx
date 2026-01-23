@@ -208,7 +208,7 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
                 <MetricCard
                   key={result.id}
                   metric={result.metric}
-                  variant="compact"
+                  size="small"
                   showTrend={false}
                 />
               ))}

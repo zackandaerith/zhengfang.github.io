@@ -1,27 +1,74 @@
 import React from 'react';
+import { Metadata } from 'next';
 import { MetricsDisplay } from '@/components/MetricsDisplay';
+import { SocialShare } from '@/components/SocialShare';
+import { SocialLinks } from '@/components/SocialLinks';
 import { getAllMetrics, getKeyMetrics } from '@/utils/metrics';
+
+export const metadata: Metadata = {
+  title: 'Metrics - John Fang | Customer Success Manager',
+  description: 'Comprehensive performance metrics showcasing John Fang\'s proven track record in customer success, including satisfaction rates, engagement improvements, and efficiency gains.',
+};
 
 export default function MetricsPage() {
   const allMetrics = getAllMetrics();
   const keyMetrics = getKeyMetrics();
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      {/* Header */}
+      <header className="container mx-auto px-4 py-6">
+        <nav className="flex items-center justify-between">
+          <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+            <a href="/">John Fang</a>
+          </div>
+          <div className="hidden md:flex items-center space-x-8">
+            <a href="/" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors">
+              Home
+            </a>
+            <a href="/about" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors">
+              About
+            </a>
+            <a href="/portfolio" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors">
+              Portfolio
+            </a>
+            <a href="/metrics" className="text-blue-600 dark:text-blue-400 font-semibold">
+              Metrics
+            </a>
+            <a href="/contact" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors">
+              Contact
+            </a>
+            <div className="ml-4">
+              <SocialLinks variant="horizontal" size="sm" />
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <div className="container mx-auto px-4 py-12">
         {/* Page Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            John Fang's Customer Success Metrics
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            Performance Metrics
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
             Comprehensive performance indicators showcasing proven track record in customer experience, 
             operational efficiency, and business growth across multiple roles and organizations.
           </p>
+          
+          {/* Share Metrics */}
+          <div className="flex justify-center items-center space-x-4">
+            <span className="text-sm text-gray-500 dark:text-gray-400">Share these metrics:</span>
+            <SocialShare 
+              title="John Fang - Customer Success Performance Metrics"
+              description="Comprehensive performance metrics showcasing proven results in customer success management."
+              variant="buttons"
+            />
+          </div>
         </div>
 
         {/* Dashboard Layout */}
-        <div className="space-y-12">
+        <div className="space-y-12 max-w-7xl mx-auto">
           {/* Main Dashboard */}
           <section>
             <MetricsDisplay
@@ -54,7 +101,7 @@ export default function MetricsPage() {
         </div>
 
         {/* Additional Information */}
-        <div className="mt-16 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-8">
+        <div className="mt-16 max-w-7xl mx-auto bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-8">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
             About These Metrics
           </h2>
@@ -87,6 +134,23 @@ export default function MetricsPage() {
                   <li>• <span className="text-red-500">Revenue:</span> Financial impact and ROI</li>
                 </ul>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Connect Section */}
+        <div className="text-center mt-16">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <a 
+              href="/contact" 
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors shadow-lg hover:shadow-xl"
+            >
+              Discuss These Results
+            </a>
+            
+            <div className="flex items-center space-x-4">
+              <span className="text-sm text-gray-500 dark:text-gray-400">Connect with me:</span>
+              <SocialLinks variant="horizontal" size="sm" />
             </div>
           </div>
         </div>
