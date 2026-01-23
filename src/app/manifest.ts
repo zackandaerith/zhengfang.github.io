@@ -1,9 +1,11 @@
 import { MetadataRoute } from 'next';
 
+export const dynamic = 'force-static';
+
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Customer Success Manager Portfolio',
-    short_name: 'CS Portfolio',
+    name: 'John Fang - Customer Success Manager',
+    short_name: 'John Fang',
     description: 'Professional portfolio showcasing customer success achievements, metrics, and case studies.',
     start_url: '/',
     display: 'standalone',
