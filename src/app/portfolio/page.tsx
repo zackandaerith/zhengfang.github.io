@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { MetricsDisplay } from '@/components/MetricsDisplay';
 import { CaseStudyShowcaseClient } from '@/components/CaseStudyShowcaseClient';
+import { TestimonialsDisplayClient } from '@/components/TestimonialsDisplayClient';
 import { getAllMetrics, getKeyMetrics } from '@/utils/metrics';
 
 export const metadata: Metadata = {
@@ -58,6 +59,11 @@ export default function Portfolio() {
               subtitle="Comprehensive view of customer success achievements and key performance indicators"
               className="bg-white dark:bg-gray-800 rounded-xl shadow-soft p-8"
             />
+          </div>
+
+          {/* Testimonials Section */}
+          <div className="mb-16">
+            <TestimonialsDisplayClient className="bg-white dark:bg-gray-800 rounded-xl shadow-soft p-8" />
           </div>
 
           {/* Key Metrics */}
