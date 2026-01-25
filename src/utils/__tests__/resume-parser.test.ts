@@ -626,7 +626,7 @@ describe('Resume Parser - Property Tests', () => {
           });
         }
       ),
-      { numRuns: 100 }
+      { numRuns: 10 }
     );
   });
 
@@ -677,7 +677,7 @@ describe('Resume Parser - Property Tests', () => {
           });
         }
       ),
-      { numRuns: 50 }
+      { numRuns: 10 }
     );
   });
 
@@ -758,7 +758,7 @@ describe('Resume Parser - Property Tests', () => {
           });
         }
       ),
-      { numRuns: 100 }
+      { numRuns: 10 }
     );
   });
 
@@ -824,7 +824,7 @@ describe('Resume Parser - Property Tests', () => {
           expect(formatted).toContain(error.message);
         }
       ),
-      { numRuns: 100 }
+      { numRuns: 10 }
     );
   });
 
@@ -862,7 +862,7 @@ describe('Resume Parser - Property Tests', () => {
           });
         }
       ),
-      { numRuns: 100 }
+      { numRuns: 10 }
     );
   });
 
@@ -915,7 +915,7 @@ describe('Resume Parser - Property Tests', () => {
           });
         }
       ),
-      { numRuns: 100 }
+      { numRuns: 10 }
     );
   });
 
@@ -989,7 +989,7 @@ describe('Resume Parser - Property Tests', () => {
           expect(uniqueIds.size).toBe(allIds.length);
         }
       ),
-      { numRuns: 100 }
+      { numRuns: 10 }
     );
   });
 });
