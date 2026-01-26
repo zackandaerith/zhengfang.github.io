@@ -8,27 +8,27 @@ export const metadata: Metadata = {
 
 export default function Contact() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Header */}
       <header className="container mx-auto px-4 py-6">
         <nav className="flex items-center justify-between">
-          <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+          <div className="text-2xl font-bold text-primary-600 dark:text-primary-400">
             <a href="/">John Fang</a>
           </div>
           <div className="hidden md:flex space-x-8">
-            <a href="/" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors">
+            <a href="/" className="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 transition-colors">
               Home
             </a>
-            <a href="/about" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors">
+            <a href="/about" className="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 transition-colors">
               About
             </a>
-            <a href="/portfolio" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors">
+            <a href="/portfolio" className="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 transition-colors">
               Portfolio
             </a>
-            <a href="/metrics" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors">
+            <a href="/metrics" className="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 transition-colors">
               Metrics
             </a>
-            <a href="/contact" className="text-blue-600 dark:text-blue-400 font-semibold">
+            <a href="/contact" className="text-primary-600 dark:text-primary-400 font-semibold">
               Contact
             </a>
           </div>
@@ -58,14 +58,14 @@ export default function Contact() {
 
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <span className="text-blue-600 dark:text-blue-400 text-xl">📧</span>
+                    <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <span className="text-primary-600 dark:text-primary-400 text-xl">📧</span>
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900 dark:text-white">Email</h3>
                       <a 
                         href="mailto:john.fang0626@icloud.com"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                        className="text-primary-600 dark:text-primary-400 hover:underline"
                       >
                         john.fang0626@icloud.com
                       </a>
@@ -73,14 +73,14 @@ export default function Contact() {
                   </div>
 
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <span className="text-blue-600 dark:text-blue-400 text-xl">📱</span>
+                    <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <span className="text-primary-600 dark:text-primary-400 text-xl">📱</span>
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900 dark:text-white">Phone</h3>
                       <a 
                         href="tel:701-936-1040"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                        className="text-primary-600 dark:text-primary-400 hover:underline"
                       >
                         (701) 936-1040
                       </a>
@@ -88,8 +88,8 @@ export default function Contact() {
                   </div>
 
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <span className="text-blue-600 dark:text-blue-400 text-xl">💼</span>
+                    <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <span className="text-primary-600 dark:text-primary-400 text-xl">💼</span>
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900 dark:text-white">LinkedIn</h3>
@@ -97,7 +97,7 @@ export default function Contact() {
                         href="https://www.linkedin.com/in/zheng-fang-johon/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                        className="text-primary-600 dark:text-primary-400 hover:underline"
                       >
                         linkedin.com/in/zheng-fang-johon
                       </a>
@@ -105,8 +105,8 @@ export default function Contact() {
                   </div>
 
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <span className="text-blue-600 dark:text-blue-400 text-xl">📍</span>
+                    <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <span className="text-primary-600 dark:text-primary-400 text-xl">📍</span>
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900 dark:text-white">Location</h3>
@@ -126,29 +126,29 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-6">
+              <div className="bg-gradient-to-br from-primary-50 to-indigo-50 dark:from-primary-900/20 dark:to-indigo-900/20 rounded-xl p-6">
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-3">
                   What I Can Help With
                 </h3>
                 <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                   <li className="flex items-center gap-2">
-                    <span className="text-blue-600 dark:text-blue-400">•</span>
+                    <span className="text-primary-600 dark:text-primary-400">•</span>
                     Customer Success Strategy
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="text-blue-600 dark:text-blue-400">•</span>
+                    <span className="text-primary-600 dark:text-primary-400">•</span>
                     Customer Experience Optimization
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="text-blue-600 dark:text-blue-400">•</span>
+                    <span className="text-primary-600 dark:text-primary-400">•</span>
                     Data Analytics & Insights
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="text-blue-600 dark:text-blue-400">•</span>
+                    <span className="text-primary-600 dark:text-primary-400">•</span>
                     Process Improvement
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="text-blue-600 dark:text-blue-400">•</span>
+                    <span className="text-primary-600 dark:text-primary-400">•</span>
                     Team Leadership & Training
                   </li>
                 </ul>

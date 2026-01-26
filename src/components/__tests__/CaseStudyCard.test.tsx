@@ -5,8 +5,11 @@ import { CaseStudy } from '@/types';
 
 // Mock Next.js Image component
 jest.mock('next/image', () => {
-  return function MockImage({ src, alt, ...props }: any) {
-    return <img src={src} alt={alt} {...props} />;
+  // eslint-disable-next-line @next/next/no-img-element
+  return function MockImage({ src, alt, fill, ...props }: any) {
+    // Filter out Next.js specific props that cause warnings on native img elements
+    const validProps = { ...props };
+    return <img src={src} alt={alt} {...validProps} />;
   };
 });
 

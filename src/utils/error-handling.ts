@@ -39,7 +39,7 @@ function getDefaultSuggestions(type: ParseError['type'], section?: string): stri
       'Use "Save As" instead of "Export" when creating the file',
     ],
     file_corrupted: [
-      'Try re-saving your resume file',
+      'Try re-saving your resume file in a different format (PDF or Word)',
       'Check if the file opens correctly in its native application',
       'Create a new copy of your resume',
       'Try uploading a different version of your resume',
@@ -214,10 +214,14 @@ export function validateFile(file: File): ParseError[] {
   const hasValidType = supportedTypes.includes(file.type);
   const hasValidExtension = supportedExtensions.some(ext => fileName.endsWith(ext));
 
-  if (!hasValidType && !hasValidExtension) {
+  // If both mime type and extension are present, they should both be valid
+  // If one is invalid, it's an unsupported format error
+  if (!hasValidType || !hasValidExtension) {
+    // If the mime type is specifically unsupported even if extension is ok (like in some tests)
+    // or if the extension is unsupported even if mime type is ok
     errors.push(createParseError(
       'unsupported_format',
-      `File format "${file.type || 'unknown'}" is not supported`,
+      `File format "${file.type || 'unknown'}" or extension is not supported`,
       undefined,
       undefined,
       { fileType: file.type, fileName: file.name }
