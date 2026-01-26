@@ -14,10 +14,7 @@ import type {
   PersonalInfo,
   Skill,
   Education,
-  Certification,
   Achievement,
-  Testimonial,
-  ContactLink,
 } from '../types';
 import {
   UserProfileSchema,
@@ -25,43 +22,23 @@ import {
   CaseStudySchema,
   MetricSchema,
   PersonalInfoSchema,
-  SkillSchema,
-  EducationSchema,
-  CertificationSchema,
-  AchievementSchema,
-  TestimonialSchema,
-  ContactLinkSchema,
-  safeValidateData,
-  getValidationErrors,
-  formatValidationErrors,
 } from '../types/validation';
 import type { z } from 'zod';
+import {
+  detectFileFormat,
+  parseJsonContent,
+  parseMarkdownContent,
+  validateContent,
+  ContentParseResult,
+} from './common';
 
-/**
- * Content file types
- */
-export type ContentType = 'json' | 'markdown' | 'auto';
-
-/**
- * Content file format
- */
-export interface ContentFile {
-  path: string;
-  format: 'json' | 'markdown';
-  content: string;
-  lastModified: Date;
-}
-
-/**
- * Content parsing result
- */
-export interface ContentParseResult<T> {
-  success: boolean;
-  data?: T;
-  errors?: Record<string, string[]>;
-  warnings?: string[];
-  rawContent?: string;
-}
+// Re-export common utilities for server-side use
+export {
+  detectFileFormat,
+  parseJsonContent,
+  parseMarkdownContent,
+  validateContent,
+};
 
 /**
  * Content management options
@@ -71,134 +48,6 @@ export interface ContentManagerOptions {
   backupDir?: string;
   encoding?: BufferEncoding;
   createBackups?: boolean;
-}
-
-/**
- * Detects file format from extension
- */
-export function detectFileFormat(filePath: string): 'json' | 'markdown' {
-  const ext = path.extname(filePath).toLowerCase();
-  if (ext === '.md' || ext === '.markdown') {
-    return 'markdown';
-  }
-  return 'json';
-}
-
-/**
- * Parses JSON content
- */
-export function parseJsonContent<T>(content: string): ContentParseResult<T> {
-  try {
-    const data = JSON.parse(content);
-    return {
-      success: true,
-      data,
-      rawContent: content,
-    };
-  } catch (error) {
-    return {
-      success: false,
-      errors: {
-        parse: [error instanceof Error ? error.message : 'Failed to parse JSON'],
-      },
-      rawContent: content,
-    };
-  }
-}
-
-/**
- * Parses Markdown content with YAML front matter
- * Supports YAML front matter for metadata
- */
-export function parseMarkdownContent(content: string): ContentParseResult<{
-  metadata: Record<string, any>;
-  body: string;
-}> {
-  const frontMatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
-  const match = content.match(frontMatterRegex);
-
-  if (!match) {
-    return {
-      success: true,
-      data: {
-        metadata: {},
-        body: content,
-      },
-      rawContent: content,
-    };
-  }
-
-  try {
-    const [, frontMatterStr, body] = match;
-    const metadata: Record<string, any> = {};
-
-    // Simple YAML front matter parsing
-    frontMatterStr.split('\n').forEach((line) => {
-      const colonIndex = line.indexOf(':');
-      if (colonIndex > -1) {
-        const key = line.substring(0, colonIndex).trim();
-        const value = line.substring(colonIndex + 1).trim();
-        
-        // Try to parse as JSON for complex types
-        try {
-          metadata[key] = JSON.parse(value);
-        } catch {
-          // Keep as string if not valid JSON
-          metadata[key] = value;
-        }
-      }
-    });
-
-    return {
-      success: true,
-      data: {
-        metadata,
-        body,
-      },
-      rawContent: content,
-    };
-  } catch (error) {
-    return {
-      success: false,
-      errors: {
-        parse: [error instanceof Error ? error.message : 'Failed to parse Markdown front matter'],
-      },
-      rawContent: content,
-    };
-  }
-}
-
-/**
- * Validates data against a Zod schema
- */
-export function validateContent<T>(
-  data: unknown,
-  schema: z.ZodSchema<T>
-): ContentParseResult<T> {
-  const result = safeValidateData(schema, data);
-
-  if (result) {
-    return {
-      success: true,
-      data: result,
-    };
-  }
-
-  // Get validation errors
-  const parseResult = schema.safeParse(data);
-  if (!parseResult.success) {
-    const validationErrors = getValidationErrors(parseResult.error);
-    const errors = formatValidationErrors(validationErrors);
-    return {
-      success: false,
-      errors,
-    };
-  }
-
-  return {
-    success: false,
-    errors: { validation: ['Unknown validation error'] },
-  };
 }
 
 /**
@@ -313,6 +162,17 @@ export async function loadUserProfile(
 }
 
 /**
+ * Saves user profile to file
+ */
+export async function saveUserProfile(
+  filePath: string,
+  profile: UserProfile,
+  options: ContentManagerOptions = {}
+): Promise<ContentParseResult<UserProfile>> {
+  return saveContentFile(filePath, profile, options);
+}
+
+/**
  * Loads experience data from file
  */
 export async function loadExperience(
@@ -320,6 +180,38 @@ export async function loadExperience(
   options: ContentManagerOptions = {}
 ): Promise<ContentParseResult<Experience>> {
   return loadContentFile(filePath, ExperienceSchema, options);
+}
+
+/**
+ * Saves experience to file
+ */
+export async function saveExperience(
+  filePath: string,
+  experience: Experience,
+  options: ContentManagerOptions = {}
+): Promise<ContentParseResult<Experience>> {
+  return saveContentFile(filePath, experience, options);
+}
+
+/**
+ * Loads personal info from file
+ */
+export async function loadPersonalInfo(
+  filePath: string,
+  options: ContentManagerOptions = {}
+): Promise<ContentParseResult<PersonalInfo>> {
+  return loadContentFile(filePath, PersonalInfoSchema, options);
+}
+
+/**
+ * Saves personal info to file
+ */
+export async function savePersonalInfo(
+  filePath: string,
+  personalInfo: PersonalInfo,
+  options: ContentManagerOptions = {}
+): Promise<ContentParseResult<PersonalInfo>> {
+  return saveContentFile(filePath, personalInfo, options);
 }
 
 /**
@@ -333,6 +225,17 @@ export async function loadCaseStudy(
 }
 
 /**
+ * Saves case study to file
+ */
+export async function saveCaseStudy(
+  filePath: string,
+  caseStudy: CaseStudy,
+  options: ContentManagerOptions = {}
+): Promise<ContentParseResult<CaseStudy>> {
+  return saveContentFile(filePath, caseStudy, options);
+}
+
+/**
  * Loads metric from file
  */
 export async function loadMetric(
@@ -343,13 +246,32 @@ export async function loadMetric(
 }
 
 /**
- * Loads personal info from file
+ * Saves metric to file
  */
-export async function loadPersonalInfo(
+export async function saveMetric(
   filePath: string,
+  metric: Metric,
   options: ContentManagerOptions = {}
-): Promise<ContentParseResult<PersonalInfo>> {
-  return loadContentFile(filePath, PersonalInfoSchema, options);
+): Promise<ContentParseResult<Metric>> {
+  return saveContentFile(filePath, metric, options);
+}
+
+/**
+ * Deletes a content file
+ */
+export async function deleteContentFile(filePath: string): Promise<{
+  success: boolean;
+  error?: string;
+}> {
+  try {
+    await fs.unlink(filePath);
+    return { success: true };
+  } catch (error) {
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Failed to delete file',
+    };
+  }
 }
 
 /**
@@ -407,89 +329,21 @@ export async function loadContentDirectory<T>(
 }
 
 /**
- * Saves user profile to file
- */
-export async function saveUserProfile(
-  filePath: string,
-  profile: UserProfile,
-  options: ContentManagerOptions = {}
-): Promise<ContentParseResult<UserProfile>> {
-  return saveContentFile(filePath, profile, options);
-}
-
-/**
- * Saves experience to file
- */
-export async function saveExperience(
-  filePath: string,
-  experience: Experience,
-  options: ContentManagerOptions = {}
-): Promise<ContentParseResult<Experience>> {
-  return saveContentFile(filePath, experience, options);
-}
-
-/**
- * Saves case study to file
- */
-export async function saveCaseStudy(
-  filePath: string,
-  caseStudy: CaseStudy,
-  options: ContentManagerOptions = {}
-): Promise<ContentParseResult<CaseStudy>> {
-  return saveContentFile(filePath, caseStudy, options);
-}
-
-/**
- * Saves metric to file
- */
-export async function saveMetric(
-  filePath: string,
-  metric: Metric,
-  options: ContentManagerOptions = {}
-): Promise<ContentParseResult<Metric>> {
-  return saveContentFile(filePath, metric, options);
-}
-
-/**
- * Saves personal info to file
- */
-export async function savePersonalInfo(
-  filePath: string,
-  personalInfo: PersonalInfo,
-  options: ContentManagerOptions = {}
-): Promise<ContentParseResult<PersonalInfo>> {
-  return saveContentFile(filePath, personalInfo, options);
-}
-
-/**
- * Deletes a content file
- */
-export async function deleteContentFile(filePath: string): Promise<{
-  success: boolean;
-  error?: string;
-}> {
-  try {
-    await fs.unlink(filePath);
-    return { success: true };
-  } catch (error) {
-    return {
-      success: false,
-      error: error instanceof Error ? error.message : 'Failed to delete file',
-    };
-  }
-}
-
-/**
  * Lists all content files in a directory
  */
 export async function listContentFiles(dirPath: string): Promise<{
   success: boolean;
-  files: ContentFile[];
+  files: Array<{
+    path: string;
+    format: 'json' | 'markdown';
+    content: string;
+    lastModified: Date;
+  }>;
   error?: string;
 }> {
   try {
     const files = await fs.readdir(dirPath);
-    const contentFiles: ContentFile[] = [];
+    const contentFiles: any[] = [];
 
     for (const file of files) {
       const filePath = path.join(dirPath, file);
@@ -517,6 +371,83 @@ export async function listContentFiles(dirPath: string): Promise<{
       error: error instanceof Error ? error.message : 'Failed to list files',
     };
   }
+}
+
+/**
+ * Batch loads multiple content files
+ */
+export async function batchLoadContent<T>(
+  filePaths: string[],
+  schema: z.ZodSchema<T>,
+  options: ContentManagerOptions = {}
+): Promise<{
+  success: boolean;
+  results: Array<{
+    path: string;
+    success: boolean;
+    data?: T;
+    errors?: Record<string, string[]>;
+  }>;
+}> {
+  const results = await Promise.all(
+    filePaths.map(async (filePath) => {
+      const result = await loadContentFile(filePath, schema, options);
+      return {
+        path: filePath,
+        success: result.success,
+        data: result.data,
+        errors: result.errors,
+      };
+    })
+  );
+
+  const allSuccess = results.every((r) => r.success);
+
+  return {
+    success: allSuccess,
+    results,
+  };
+}
+
+/**
+ * Batch saves multiple content items
+ */
+export async function batchSaveContent<T>(
+  items: Array<{ path: string; data: T }>,
+  options: ContentManagerOptions = {}
+): Promise<{
+  success: boolean;
+  results: Array<{
+    path: string;
+    success: boolean;
+    error?: string;
+  }>;
+}> {
+  const results = await Promise.all(
+    items.map(async ({ path: filePath, data }) => {
+      try {
+        const result = await saveContentFile(filePath, data, options);
+        return {
+          path: filePath,
+          success: result.success,
+          error: result.errors ? Object.values(result.errors).flat().join(', ') : undefined,
+        };
+      } catch (error) {
+        return {
+          path: filePath,
+          success: false,
+          error: error instanceof Error ? error.message : 'Unknown error',
+        };
+      }
+    })
+  );
+
+  const allSuccess = results.every((r) => r.success);
+
+  return {
+    success: allSuccess,
+    results,
+  };
 }
 
 /**
@@ -621,81 +552,4 @@ export async function exportToMarkdown<T extends Record<string, any>>(
       },
     };
   }
-}
-
-/**
- * Batch loads multiple content files
- */
-export async function batchLoadContent<T>(
-  filePaths: string[],
-  schema: z.ZodSchema<T>,
-  options: ContentManagerOptions = {}
-): Promise<{
-  success: boolean;
-  results: Array<{
-    path: string;
-    success: boolean;
-    data?: T;
-    errors?: Record<string, string[]>;
-  }>;
-}> {
-  const results = await Promise.all(
-    filePaths.map(async (filePath) => {
-      const result = await loadContentFile(filePath, schema, options);
-      return {
-        path: filePath,
-        success: result.success,
-        data: result.data,
-        errors: result.errors,
-      };
-    })
-  );
-
-  const allSuccess = results.every((r) => r.success);
-
-  return {
-    success: allSuccess,
-    results,
-  };
-}
-
-/**
- * Batch saves multiple content items
- */
-export async function batchSaveContent<T>(
-  items: Array<{ path: string; data: T }>,
-  options: ContentManagerOptions = {}
-): Promise<{
-  success: boolean;
-  results: Array<{
-    path: string;
-    success: boolean;
-    error?: string;
-  }>;
-}> {
-  const results = await Promise.all(
-    items.map(async ({ path: filePath, data }) => {
-      try {
-        const result = await saveContentFile(filePath, data, options);
-        return {
-          path: filePath,
-          success: result.success,
-          error: result.errors ? Object.values(result.errors).flat().join(', ') : undefined,
-        };
-      } catch (error) {
-        return {
-          path: filePath,
-          success: false,
-          error: error instanceof Error ? error.message : 'Unknown error',
-        };
-      }
-    })
-  );
-
-  const allSuccess = results.every((r) => r.success);
-
-  return {
-    success: allSuccess,
-    results,
-  };
 }

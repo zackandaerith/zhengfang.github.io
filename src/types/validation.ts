@@ -9,10 +9,11 @@ export const PersonalInfoSchema = z.object({
   location: z.string().min(1, 'Location is required'),
   email: z.string().email('Invalid email format'),
   phone: z.string().optional(),
-  linkedIn: z.string().url('Invalid LinkedIn URL'),
-  website: z.string().url('Invalid website URL').optional(),
+  linkedIn: z.string().url('Invalid LinkedIn URL').or(z.literal('')),
+  github: z.string().url('Invalid GitHub URL').optional().or(z.literal('')),
+  website: z.string().url('Invalid website URL').optional().or(z.literal('')),
   summary: z.string().min(10, 'Summary must be at least 10 characters'),
-  profileImage: z.string().url('Invalid profile image URL'),
+  profileImage: z.string().url('Invalid profile image URL').or(z.literal('')),
 });
 
 // Metric Schema
@@ -22,9 +23,9 @@ export const MetricSchema = z.object({
   value: z.union([z.number(), z.string()]),
   unit: z.string().min(1, 'Unit is required'),
   description: z.string().min(1, 'Description is required'),
-  category: z.enum(['retention', 'growth', 'satisfaction', 'efficiency', 'revenue']),
-  timeframe: z.string().min(1, 'Timeframe is required'),
-  context: z.string().min(1, 'Context is required'),
+  category: z.enum(['retention', 'growth', 'satisfaction', 'efficiency', 'revenue', 'other']),
+  timeframe: z.string().optional(),
+  context: z.string().optional(),
 });
 
 // Experience Schema
@@ -32,8 +33,8 @@ export const ExperienceSchema = z.object({
   id: z.string().min(1, 'Experience ID is required'),
   company: z.string().min(1, 'Company name is required'),
   position: z.string().min(1, 'Position is required'),
-  startDate: z.date(),
-  endDate: z.date().optional(),
+  startDate: z.coerce.date(),
+  endDate: z.coerce.date().optional().nullable(),
   location: z.string().min(1, 'Location is required'),
   description: z.string().min(10, 'Description must be at least 10 characters'),
   achievements: z.array(z.string().min(1, 'Achievement cannot be empty')),
@@ -65,9 +66,9 @@ export const EducationSchema = z.object({
   institution: z.string().min(1, 'Institution is required'),
   degree: z.string().min(1, 'Degree is required'),
   field: z.string().min(1, 'Field of study is required'),
-  startDate: z.date(),
-  endDate: z.date().optional(),
-  gpa: z.number().min(0).max(4).optional(),
+  startDate: z.coerce.date(),
+  endDate: z.coerce.date().optional().nullable(),
+  gpa: z.number().min(0).max(4).optional().nullable(),
   achievements: z.array(z.string().min(1, 'Achievement cannot be empty')).optional(),
 }).refine((data) => {
   // Ensure end date is after start date if provided
@@ -85,10 +86,10 @@ export const CertificationSchema = z.object({
   id: z.string().min(1, 'Certification ID is required'),
   name: z.string().min(1, 'Certification name is required'),
   issuer: z.string().min(1, 'Issuer is required'),
-  issueDate: z.date(),
-  expiryDate: z.date().optional(),
+  issueDate: z.coerce.date(),
+  expiryDate: z.coerce.date().optional().nullable(),
   credentialId: z.string().optional(),
-  credentialUrl: z.string().url('Invalid credential URL').optional(),
+  credentialUrl: z.string().url('Invalid credential URL').optional().or(z.literal('')),
 }).refine((data) => {
   // Ensure expiry date is after issue date if provided
   if (data.expiryDate && data.issueDate) {
@@ -105,7 +106,7 @@ export const AchievementSchema = z.object({
   id: z.string().min(1, 'Achievement ID is required'),
   title: z.string().min(1, 'Title is required'),
   description: z.string().min(10, 'Description must be at least 10 characters'),
-  date: z.date(),
+  date: z.coerce.date(),
   category: z.enum(['award', 'recognition', 'milestone', 'publication']),
   organization: z.string().optional(),
   metrics: z.array(MetricSchema).optional(),
@@ -126,9 +127,9 @@ export const TestimonialSchema = z.object({
   author: z.string().min(1, 'Author is required'),
   position: z.string().min(1, 'Position is required'),
   company: z.string().min(1, 'Company is required'),
-  date: z.date(),
-  rating: z.number().min(1).max(5).optional(),
-  image: z.string().url('Invalid image URL').optional(),
+  date: z.coerce.date(),
+  rating: z.number().min(1).max(5).optional().nullable(),
+  image: z.string().url('Invalid image URL').optional().or(z.literal('')),
 });
 
 // Case Study Schema
@@ -145,8 +146,8 @@ export const CaseStudySchema = z.object({
   images: z.array(z.string().url('Invalid image URL')),
   tags: z.array(z.string().min(1, 'Tag cannot be empty')),
   featured: z.boolean(),
-  startDate: z.date(),
-  endDate: z.date().optional(),
+  startDate: z.coerce.date(),
+  endDate: z.coerce.date().optional().nullable(),
 }).refine((data) => {
   // Ensure end date is after start date if provided
   if (data.endDate && data.startDate) {
@@ -180,7 +181,7 @@ export const ContactLinkSchema = z.object({
 export const ContactInteractionSchema = z.object({
   id: z.string().min(1, 'Interaction ID is required'),
   type: z.enum(['form_submission', 'email_click', 'social_click', 'resume_download']),
-  timestamp: z.date(),
+  timestamp: z.coerce.date(),
   details: z.record(z.string(), z.any()).optional(),
 });
 
@@ -304,14 +305,14 @@ export const StructuredDataSchema = z.object({
 export const AnalyticsEventSchema = z.object({
   name: z.string().min(1, 'Event name is required'),
   parameters: z.record(z.string(), z.any()),
-  timestamp: z.date(),
+  timestamp: z.coerce.date(),
 });
 
 export const PageDataSchema = z.object({
   path: z.string().min(1, 'Path is required'),
   title: z.string().min(1, 'Title is required'),
   description: z.string().min(1, 'Description is required'),
-  lastModified: z.date(),
+  lastModified: z.coerce.date(),
   priority: z.number().min(0).max(1),
   changeFrequency: z.enum(['always', 'hourly', 'daily', 'weekly', 'monthly', 'yearly', 'never']),
 });

@@ -559,13 +559,27 @@ export function extractExperience(text: string): Experience[] {
   const sectionEnd = findNextSection(text, experienceStart);
   const experienceText = text.substring(experienceStart, sectionEnd);
 
+  // Skip the header line
+  const lines = experienceText.split('\n');
+  let firstEntryLine = 0;
+  while (firstEntryLine < lines.length &&
+         (!lines[firstEntryLine].trim() ||
+          /^(?:professional\s+)?experience|work\s+history|employment|career$/i.test(lines[firstEntryLine].trim()))) {
+    firstEntryLine++;
+  }
+
+  const actualContent = lines.slice(firstEntryLine).join('\n');
+
   // Split by common job entry patterns
-  const jobEntries = experienceText.split(/\n(?=[A-Z][a-z]+\s+(?:at|@|-|,|\d{4})|^\d{4})/m);
+  // Pattern 1: New line followed by something that looks like "Position at Company" or a year
+  const splitPattern = /\n+(?=[A-Z][\w\s]+(?:at|@|-|,|\d{4})|^\d{4})/m;
+  const jobEntries = actualContent.split(splitPattern);
 
   for (const entry of jobEntries) {
-    if (entry.trim().length < 20) continue;
+    const trimmedEntry = entry.trim();
+    if (trimmedEntry.length < 10) continue;
 
-    const experience = parseJobEntry(entry);
+    const experience = parseJobEntry(trimmedEntry);
     if (experience) {
       experiences.push(experience);
     }
@@ -648,11 +662,26 @@ export function extractSkills(text: string): Skill[] {
 
   // Extract skills from common formats
   // Format 1: Comma-separated list
+  // Look for any line that has commas and looks like a list
+  const lines = skillsText.split('\n');
+  for (const line of lines) {
+    const trimmedLine = line.trim();
+    if (trimmedLine.includes(',') && trimmedLine.length > 5) {
+      const parts = trimmedLine.split(',').map(p => p.trim()).filter(p => p.length > 1);
+      if (parts.length >= 2) {
+        parts.forEach(p => {
+          if (p.length < 50) skillsSet.add(p);
+        });
+      }
+    }
+  }
+
+  // Also try the original regex as backup
   const commaListMatch = skillsText.match(/(?:skills|expertise)[\s:]*([^:\n]+(?:,[^:\n]+)*)/i);
   if (commaListMatch) {
     const skillsList = commaListMatch[1].split(',').map((s) => s.trim());
     skillsList.forEach((skill) => {
-      if (skill.length > 2 && skill.length < 50) {
+      if (skill.length > 1 && skill.length < 50) {
         skillsSet.add(skill);
       }
     });
@@ -713,13 +742,27 @@ export function extractEducation(text: string): Education[] {
   const sectionEnd = findNextSection(text, educationStart);
   const educationText = text.substring(educationStart, sectionEnd);
 
+  // Skip the header line
+  const lines = educationText.split('\n');
+  let firstEntryLine = 0;
+  while (firstEntryLine < lines.length &&
+         (!lines[firstEntryLine].trim() ||
+          /^education|academic|degree|university|college|school$/i.test(lines[firstEntryLine].trim()))) {
+    firstEntryLine++;
+  }
+
+  const actualContent = lines.slice(firstEntryLine).join('\n');
+
   // Split by common education entry patterns
-  const eduEntries = educationText.split(/\n(?=[A-Z][a-z]+\s+(?:University|College|School|Institute)|^\d{4})/m);
+  // Split by year or if there's a clear degree name at the start of a line
+  const splitPattern = /\n+(?=\d{4}|(?:Bachelor|Master|PhD|Associate|Degree))/m;
+  const eduEntries = actualContent.split(splitPattern);
 
   for (const entry of eduEntries) {
-    if (entry.trim().length < 10) continue;
+    const trimmedEntry = entry.trim();
+    if (trimmedEntry.length < 5) continue;
 
-    const edu = parseEducationEntry(entry);
+    const edu = parseEducationEntry(trimmedEntry);
     if (edu) {
       education.push(edu);
     }
@@ -736,8 +779,15 @@ function parseEducationEntry(entry: string): Education | null {
   if (lines.length === 0) return null;
 
   // Extract institution
-  const institutionMatch = entry.match(/(?:from|at|@)?\s*([A-Z][^,\n]+(?:University|College|School|Institute)[^,\n]*)/i);
-  const institution = institutionMatch ? institutionMatch[1].trim() : lines[0];
+  const institutionMatch = entry.match(/(?:from|at|@)?\s*([^,\n]+(?:University|College|School|Institute|Academy)[^,\n]*)/i);
+  let institution = institutionMatch ? institutionMatch[1].trim() : '';
+
+  if (!institution) {
+    // If no explicit university/college name found, only use lines[0] if it looks like a school
+    if (/(?:University|College|School|Institute|Academy)/i.test(lines[0])) {
+      institution = lines[0].trim();
+    }
+  }
 
   // Extract degree
   const degreeMatch = entry.match(/(?:degree|earned|received)[\s:]*([^,\n]+)/i);
@@ -799,13 +849,25 @@ export function extractAchievements(text: string): Achievement[] {
   const sectionEnd = findNextSection(text, achievementsStart);
   const achievementsText = text.substring(achievementsStart, sectionEnd);
 
+  // Skip the header line
+  const lines = achievementsText.split('\n');
+  let firstEntryLine = 0;
+  while (firstEntryLine < lines.length &&
+         (!lines[firstEntryLine].trim() ||
+          /^awards|recognition|achievements|honors|certifications$/i.test(lines[firstEntryLine].trim()))) {
+    firstEntryLine++;
+  }
+
+  const actualContent = lines.slice(firstEntryLine).join('\n');
+
   // Split by bullet points or line breaks
-  const achievementEntries = achievementsText.split(/\n[•\-\*]\s+/);
+  const achievementEntries = actualContent.split(/\n(?:[•\-\*]\s+)?/);
 
   for (const entry of achievementEntries) {
-    if (entry.trim().length < 10) continue;
+    const trimmedEntry = entry.trim();
+    if (trimmedEntry.length < 5) continue;
 
-    const achievement = parseAchievementEntry(entry);
+    const achievement = parseAchievementEntry(trimmedEntry);
     if (achievement) {
       achievements.push(achievement);
     }
@@ -819,7 +881,7 @@ export function extractAchievements(text: string): Achievement[] {
  */
 function parseAchievementEntry(entry: string): Achievement | null {
   const title = entry.split('\n')[0].trim();
-  if (!title || title.length < 5) return null;
+  if (!title || title.length < 5 || /achievements|awards|recognition/i.test(title)) return null;
 
   // Extract date
   const dateMatch = entry.match(/(\d{4})/);
@@ -904,7 +966,9 @@ function extractTechnologies(text: string): string[] {
 
   // Search for technology keywords in text
   for (const tech of techKeywords) {
-    if (new RegExp(`\\b${tech}\\b`, 'i').test(text)) {
+    // Escape special regex characters like + in C++
+    const escapedTech = tech.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    if (new RegExp(`\\b${escapedTech}\\b`, 'i').test(text)) {
       technologies.add(tech);
     }
   }

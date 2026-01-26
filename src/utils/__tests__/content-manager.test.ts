@@ -64,11 +64,7 @@ async function setupTestDir() {
 // Helper to clean up test directory
 async function cleanupTestDir() {
   try {
-    const files = await fs.readdir(testDir);
-    for (const file of files) {
-      await fs.unlink(path.join(testDir, file));
-    }
-    await fs.rmdir(testDir);
+    await fs.rm(testDir, { recursive: true, force: true });
   } catch (error) {
     // Directory might not exist
   }

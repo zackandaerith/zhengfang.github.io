@@ -28,8 +28,12 @@ describe('MetricCard', () => {
     expect(screen.getByText('Customer Satisfaction')).toBeInTheDocument();
     expect(screen.getByText('95%')).toBeInTheDocument();
     expect(screen.getByText('Customer satisfaction rating from surveys')).toBeInTheDocument();
-    expect(screen.getByText('Period: 2023-2024')).toBeInTheDocument();
-    expect(screen.getByText('Context: Product Expert role at Apple')).toBeInTheDocument();
+    expect(screen.getAllByText((_, node) =>
+      node?.textContent?.includes('Period:') === true && node?.textContent?.includes('2023-2024') === true
+    )[0]).toBeInTheDocument();
+    expect(screen.getAllByText((_, node) =>
+      node?.textContent?.includes('Context:') === true && node?.textContent?.includes('Product Expert role at Apple') === true
+    )[0]).toBeInTheDocument();
   });
 
   it('displays category badge', () => {
