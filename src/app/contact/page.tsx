@@ -1,19 +1,22 @@
 import { Metadata } from 'next';
 import { ContactForm } from '@/components/ContactForm';
+import profileData from '@/data/profile.json';
 
 export const metadata: Metadata = {
-  title: 'Contact - John Fang | Customer Success Manager',
-  description: 'Get in touch with John Fang to discuss customer success opportunities, collaborations, or to learn more about his experience in customer experience strategy.',
+  title: `Contact - ${profileData.personalInfo.name} | Customer Success Manager`,
+  description: `Get in touch with ${profileData.personalInfo.name} to discuss customer success opportunities, collaborations, or to learn more about his experience in customer experience strategy.`,
 };
 
 export default function Contact() {
+  const { name, email, phone, linkedIn, location } = profileData.personalInfo;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Header */}
       <header className="container mx-auto px-4 py-6">
         <nav className="flex items-center justify-between">
           <div className="text-2xl font-bold text-primary-600 dark:text-primary-400">
-            <a href="/">John Fang</a>
+            <a href="/">{name}</a>
           </div>
           <div className="hidden md:flex space-x-8">
             <a href="/" className="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 transition-colors">
@@ -64,28 +67,30 @@ export default function Contact() {
                     <div>
                       <h3 className="font-semibold text-gray-900 dark:text-white">Email</h3>
                       <a 
-                        href="mailto:john.fang0626@icloud.com"
-                        className="text-primary-600 dark:text-primary-400 hover:underline"
+                        href={`mailto:${email}`}
+                        className="text-primary-600 dark:text-primary-400 hover:underline break-all"
                       >
-                        john.fang0626@icloud.com
+                        {email}
                       </a>
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <span className="text-primary-600 dark:text-primary-400 text-xl">📱</span>
+                  {phone && (
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-primary-600 dark:text-primary-400 text-xl">📱</span>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 dark:text-white">Phone</h3>
+                        <a
+                          href={`tel:${phone}`}
+                          className="text-primary-600 dark:text-primary-400 hover:underline"
+                        >
+                          {phone}
+                        </a>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900 dark:text-white">Phone</h3>
-                      <a 
-                        href="tel:701-936-1040"
-                        className="text-primary-600 dark:text-primary-400 hover:underline"
-                      >
-                        (701) 936-1040
-                      </a>
-                    </div>
-                  </div>
+                  )}
 
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -94,12 +99,12 @@ export default function Contact() {
                     <div>
                       <h3 className="font-semibold text-gray-900 dark:text-white">LinkedIn</h3>
                       <a 
-                        href="https://www.linkedin.com/in/zheng-fang-johon/"
+                        href={linkedIn}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-primary-600 dark:text-primary-400 hover:underline"
+                        className="text-primary-600 dark:text-primary-400 hover:underline break-all"
                       >
-                        linkedin.com/in/zheng-fang-johon
+                        {linkedIn.replace('https://', '')}
                       </a>
                     </div>
                   </div>
@@ -110,7 +115,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900 dark:text-white">Location</h3>
-                      <p className="text-gray-600 dark:text-gray-300">Waltham, MA</p>
+                      <p className="text-gray-600 dark:text-gray-300">{location}</p>
                     </div>
                   </div>
                 </div>
@@ -121,7 +126,6 @@ export default function Contact() {
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 text-sm">
                     I typically respond to messages within 24 hours during business days. 
-                    For urgent matters, please call directly.
                   </p>
                 </div>
               </div>

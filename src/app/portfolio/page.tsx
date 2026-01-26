@@ -5,15 +5,17 @@ import { TestimonialsDisplayClient } from '@/components/TestimonialsDisplayClien
 import { SocialShare } from '@/components/SocialShare';
 import { SocialLinks } from '@/components/SocialLinks';
 import { getAllMetrics, getKeyMetrics } from '@/utils/metrics';
+import profileData from '@/data/profile.json';
 
 export const metadata: Metadata = {
-  title: 'Portfolio - John Fang | Customer Success Manager',
-  description: 'Explore John Fang\'s customer success case studies, achievements, and measurable outcomes that demonstrate proven results in customer experience strategy.',
+  title: `Portfolio - ${profileData.personalInfo.name} | Customer Success Manager`,
+  description: `Explore ${profileData.personalInfo.name}'s customer success case studies, achievements, and measurable outcomes that demonstrate proven results in customer experience strategy.`,
 };
 
 export default function Portfolio() {
   const allMetrics = getAllMetrics();
   const keyMetrics = getKeyMetrics();
+  const { name } = profileData.personalInfo;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
@@ -21,7 +23,7 @@ export default function Portfolio() {
       <header className="container mx-auto px-4 py-6">
         <nav className="flex items-center justify-between">
           <div className="text-2xl font-bold text-primary-600 dark:text-primary-400">
-            <a href="/">John Fang</a>
+            <a href="/">{name}</a>
           </div>
           <div className="hidden md:flex items-center space-x-8">
             <a href="/" className="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 transition-colors">
@@ -61,8 +63,8 @@ export default function Portfolio() {
             <div className="flex justify-center items-center space-x-4">
               <span className="text-sm text-gray-500 dark:text-gray-400">Share this portfolio:</span>
               <SocialShare 
-                title="John Fang - Customer Success Manager Portfolio"
-                description="Explore John Fang's customer success achievements, case studies, and measurable outcomes."
+                title={`${name} - Customer Success Manager Portfolio`}
+                description={`Explore ${name}'s customer success achievements, case studies, and measurable outcomes.`}
                 variant="buttons"
               />
             </div>
