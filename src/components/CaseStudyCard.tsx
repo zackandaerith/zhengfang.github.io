@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { CaseStudy } from '@/types';
+import { OptimizedImage } from './OptimizedImage';
 
 interface CaseStudyCardProps {
   caseStudy: CaseStudy;
@@ -82,12 +82,11 @@ export const CaseStudyCard: React.FC<CaseStudyCardProps> = ({
 
       {/* Image */}
       <div className={`${getImageClasses()} relative overflow-hidden rounded-lg mb-4`}>
-        <Image
+        <OptimizedImage
           src={primaryImage}
           alt={caseStudy.title}
-          fill
           className="object-cover"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority={caseStudy.featured}
         />
       </div>
 

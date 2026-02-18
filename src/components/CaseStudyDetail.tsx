@@ -1,9 +1,10 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { CaseStudy } from '@/types';
 import { MetricCard } from './MetricCard';
+import { ImageGallery } from './ImageGallery';
+import { OptimizedImage } from './OptimizedImage';
 
 interface CaseStudyDetailProps {
   caseStudy: CaseStudy;
@@ -72,16 +73,27 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
         </div>
       </div>
 
-      {/* Hero Image */}
+      {/* Hero Image or Gallery */}
       {caseStudy.images.length > 0 && (
-        <div className="relative h-96 w-full overflow-hidden rounded-lg mb-8">
-          <Image
-            src={caseStudy.images[0]}
-            alt={caseStudy.title}
-            fill
-            className="object-cover"
-            priority
-          />
+        <div className="mb-8">
+          {caseStudy.images.length === 1 ? (
+            <div className="relative h-96 w-full overflow-hidden rounded-lg">
+              <OptimizedImage
+                src={caseStudy.images[0]}
+                alt={caseStudy.title}
+                className="object-cover"
+                priority
+              />
+            </div>
+          ) : (
+            <ImageGallery
+              images={caseStudy.images}
+              alt={caseStudy.title}
+              layout="carousel"
+              aspectRatio="video"
+              showThumbnails={true}
+            />
+          )}
         </div>
       )}
 
@@ -126,27 +138,6 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
             </div>
           </section>
 
-          {/* Additional Images */}
-          {caseStudy.images.length > 1 && (
-            <section>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                Project Gallery
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {caseStudy.images.slice(1).map((image, index) => (
-                  <div key={index} className="relative h-48 overflow-hidden rounded-lg">
-                    <Image
-                      src={image}
-                      alt={`${caseStudy.title} - Image ${index + 2}`}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-            </section>
-          )}
-
           {/* Testimonial */}
           {caseStudy.testimonial && (
             <section className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
@@ -158,11 +149,12 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
               </blockquote>
               <div className="flex items-center gap-4">
                 {caseStudy.testimonial.image && (
-                  <div className="relative w-12 h-12 overflow-hidden rounded-full">
-                    <Image
+                  <div className="relative w-12 h-12 overflow-hidden rounded-full flex-shrink-0">
+                    <OptimizedImage
                       src={caseStudy.testimonial.image}
                       alt={caseStudy.testimonial.author}
-                      fill
+                      width={48}
+                      height={48}
                       className="object-cover"
                     />
                   </div>

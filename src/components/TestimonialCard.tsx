@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { Testimonial } from '@/types';
+import { OptimizedImage } from './OptimizedImage';
 
 interface TestimonialCardProps {
   testimonial: Testimonial;
@@ -81,12 +81,12 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
         {/* Author Image */}
         {testimonial.image && (
           <div className="relative w-12 h-12 overflow-hidden rounded-full flex-shrink-0">
-            <Image
+            <OptimizedImage
               src={testimonial.image}
               alt={testimonial.author}
-              fill
+              width={48}
+              height={48}
               className="object-cover"
-              sizes="48px"
             />
           </div>
         )}
