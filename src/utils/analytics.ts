@@ -6,11 +6,7 @@
 // Extend Window interface for gtag
 declare global {
   interface Window {
-    gtag?: (
-      command: 'config' | 'event' | 'consent',
-      targetId: string,
-      config?: Record<string, any>
-    ) => void;
+    gtag?: (...args: any[]) => void;
     dataLayer?: any[];
   }
 }
