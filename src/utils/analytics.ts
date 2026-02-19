@@ -6,7 +6,13 @@
 // Extend Window interface for gtag
 declare global {
   interface Window {
-    gtag?: (...args: any[]) => void;
+    gtag?: {
+      (command: 'config', targetId: string, config?: Record<string, any>): void;
+      (command: 'event', eventName: string, eventParams?: Record<string, any>): void;
+      (command: 'consent', consentArg: string, consentParams: Record<string, any>): void;
+      (command: 'js', date: Date): void;
+      (command: string, ...args: any[]): void;
+    };
     dataLayer?: any[];
   }
 }
@@ -29,26 +35,27 @@ export function initGA(): void {
 
   // Initialize dataLayer
   window.dataLayer = window.dataLayer || [];
-  window.gtag = function gtag() {
-    window.dataLayer?.push(arguments);
-  };
+  window.gtag = function gtag(...args: any[]) {
+    window.dataLayer?.push(args);
+  } as any;
 
-  // @ts-ignore - 'js' is a valid gtag command for initialization
-  window.gtag('js', new Date());
+  if (window.gtag) {
+    window.gtag('js', new Date());
 
-  // Set default consent mode (privacy-first)
-  window.gtag('consent', 'default', {
-    analytics_storage: 'denied',
-    ad_storage: 'denied',
-    wait_for_update: 500,
-  });
+    // Set default consent mode (privacy-first)
+    window.gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500,
+    });
 
-  // Configure GA
-  window.gtag('config', GA_MEASUREMENT_ID, {
-    page_path: window.location.pathname,
-    anonymize_ip: true,
-    cookie_flags: 'SameSite=None;Secure',
-  });
+    // Configure GA
+    window.gtag('config', GA_MEASUREMENT_ID, {
+      page_path: window.location.pathname,
+      anonymize_ip: true,
+      cookie_flags: 'SameSite=None;Secure',
+    });
+  }
 }
 
 /**
