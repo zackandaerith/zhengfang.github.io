@@ -33,6 +33,7 @@ export function initGA(): void {
     window.dataLayer?.push(arguments);
   };
 
+  // @ts-ignore - 'js' is a valid gtag command for initialization
   window.gtag('js', new Date());
 
   // Set default consent mode (privacy-first)
